@@ -2,12 +2,13 @@ package spring.lab.items.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import spring.lab.items.Ticket;
+import spring.lab.items.repository.TicketRepository;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class TicketRepositoryImpl {
+public class TicketRepositoryImpl implements TicketRepository {
     private final List<Ticket> tickets = Arrays.asList(
             new Ticket("Home Alone", "12:30", 5, 10),
             new Ticket("Home Alone", "12:30", 5, 13),

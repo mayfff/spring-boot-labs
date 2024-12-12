@@ -27,8 +27,6 @@ public class SpringBootLabsApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner() {
-		return args -> {
-			beansTester().compare();
-		};
+		return args -> beansTester().compare();
 	}
 }
