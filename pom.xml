@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>spring.lab</groupId>
-	<artifactId>HelloWorld</artifactId>
+	<artifactId>SpringBootLabs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HelloWorld</name>
+	<name>SpringBootLabs</name>
 	<description>laboratory works for spring course</description>
 	<url/>
 	<licenses>
