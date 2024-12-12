@@ -35,6 +35,10 @@
         .search-form {
             margin-bottom: 20px;
         }
+        .view {
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -49,12 +53,28 @@
 </form>
 
 <div id="tickets" class="ticket-container">
+
     <div class="ticket" th:each="ticket : ${tickets}">
         <div class="ticket-header" th:text="${ticket.title}">Movie Title</div>
         <div class="ticket-details">
+
             <span><strong>Time:</strong> <span th:text="${ticket.time}">Time</span></span>
             <span><strong>Row:</strong> <span th:text="${ticket.row}">Row</span></span>
             <span><strong>Seat:</strong> <span th:text="${ticket.seat}">Seat</span></span>
+
+            <div th:if="${ticket.row > 5 && ticket.row < 8}">
+                <span class="view">Best view!</span>
+            </div>
+        </div>
+
+        <div>
+            <span><strong>Discount:</strong>
+                <span th:switch="${ticket.time}">
+                    <span th:case="'10:00'">Morning Discount</span>
+                    <span th:case="'20:00'">Evening Discount</span>
+                    <span th:case="*">No Discount</span>
+                </span>
+            </span>
         </div>
     </div>
 </div>

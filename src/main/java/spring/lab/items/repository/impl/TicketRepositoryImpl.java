@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public class TicketRepositoryImpl implements TicketRepository {
     private final List<Ticket> tickets = Arrays.asList(
-            new Ticket("Home Alone", "12:30", 5, 10),
+            new Ticket("Home Alone", "12:30", 6, 10),
             new Ticket("Home Alone", "12:30", 5, 13),
-            new Ticket("Deadpool 2", "14:30", 2, 4),
-            new Ticket("Taxi 3", "10:20", 1, 1)
+            new Ticket("Deadpool 2", "10:00", 2, 4),
+            new Ticket("Taxi 3", "20:00", 1, 1)
     );
 
     public List<Ticket> findAllTickets() {
