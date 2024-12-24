@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: SpringBootLabs
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-lab
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+springdoc:
+  api-docs:
+    enabled: true
+
+  swagger-ui:
+    path: /swagger-ui.html
