@@ -11,6 +11,7 @@ public class Ticket {
     String date;
     String startTime;
     int seat;
-    String movieTitle;
+    Movie movie;
+    User user;
     double price;
 }

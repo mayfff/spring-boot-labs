@@ -6,11 +6,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/spring-lab
     username: postgres
     password: postgres
-    driver-class-name: org.postgresql.Driver
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
 
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+    api-docs:
+      enabled: true

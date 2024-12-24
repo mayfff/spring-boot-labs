@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import spring.lab.dto.TicketRequestDto;
-import spring.lab.dto.TicketResponseDto;
+import spring.lab.dto.ticket.TicketRequestDto;
+import spring.lab.dto.ticket.TicketRequestWithUserDto;
+import spring.lab.dto.ticket.TicketResponseDto;
 import spring.lab.mapper.TicketMapper;
 import spring.lab.service.TicketService;
 
@@ -20,13 +21,13 @@ public class TicketController {
     private final TicketService ticketService;
     private final TicketMapper ticketMapper;
 
-    @PostMapping
-    public ResponseEntity<TicketResponseDto> createTicket(@RequestBody @Valid TicketRequestDto ticketRequestDto) {
-        return ResponseEntity.ok(ticketMapper.toTicketResponseDto(ticketService.createTicket(ticketRequestDto)));
+    @PostMapping("/{userId}")
+    public ResponseEntity<TicketResponseDto> createTicket(@PathVariable Long userId, @RequestBody @Valid TicketRequestDto ticketRequestDto) {
+        return ResponseEntity.ok(ticketMapper.toTicketResponseDto(ticketService.createTicket(userId, ticketRequestDto)));
     }
 
     @PutMapping("/{ticketId}")
-    public ResponseEntity<TicketResponseDto> updateTicket(@PathVariable Long ticketId, @RequestBody @Valid TicketRequestDto ticketRequestDto) {
+    public ResponseEntity<TicketResponseDto> updateTicket(@PathVariable Long ticketId, @RequestBody @Valid TicketRequestWithUserDto ticketRequestDto) {
         return ResponseEntity.ok(ticketMapper.toTicketResponseDto(ticketService.updateTicket(ticketId, ticketRequestDto)));
     }
 
@@ -36,9 +37,8 @@ public class TicketController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<TicketResponseDto>> getAllTickets(@RequestParam(name = "page", defaultValue = "0") Long page,
-                                                                 @RequestParam(name = "size", defaultValue = "10") Long size) {
-        return ResponseEntity.ok(ticketMapper.toTicketResponseDtoList(ticketService.getAllTickets(page, size)));
+    public ResponseEntity<List<TicketResponseDto>> getAllTickets() {
+        return ResponseEntity.ok(ticketMapper.toTicketResponseDtos(ticketService.getAllTickets()));
     }
 
     @GetMapping("/{ticketId}")
@@ -48,6 +48,16 @@ public class TicketController {
 
     @GetMapping("/filter/{movieTitle}")
     public ResponseEntity<List<TicketResponseDto>> findTicketByMovie(@PathVariable String movieTitle) {
-        return ResponseEntity.ok(ticketMapper.toTicketResponseDtoList(ticketService.getTicketsByMovie(movieTitle)));
+        return ResponseEntity.ok(ticketMapper.toTicketResponseDtos(ticketService.getTicketsByMovie(movieTitle)));
+    }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<List<TicketResponseDto>> getAllTicketsByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(ticketMapper.toTicketResponseDtos(ticketService.getTicketByUsername(username)));
+    }
+
+    @GetMapping("/user-email/{userEmail}")
+    public ResponseEntity<List<TicketResponseDto>> getAllTicketsByUserEmail(@PathVariable String userEmail) {
+        return ResponseEntity.ok(ticketMapper.toTicketResponseDtos(ticketService.getTicketByUserEmail(userEmail)));
     }
 }

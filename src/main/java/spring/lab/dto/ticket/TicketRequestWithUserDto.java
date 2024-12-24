@@ -1,4 +1,4 @@
-package spring.lab.dto;
+package spring.lab.dto.ticket;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class TicketRequestDto {
+public class TicketRequestWithUserDto {
     @NotBlank(message = "Data is required")
     private String date;
 
@@ -19,9 +19,12 @@ public class TicketRequestDto {
     @Min(value = 1, message = "Seat must be greater than 0")
     private Integer seat;
 
-    @NotBlank(message = "Movie title is required")
-    private String movieTitle;
+    @NotNull(message = "Movie title is required")
+    private Long movieId;
 
     @NotNull(message = "Price cannot be null")
     private Double price;
+
+    @NotNull(message = "User cannot be null")
+    private Long userId;
 }

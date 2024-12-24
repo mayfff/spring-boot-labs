@@ -1,7 +1,9 @@
-package spring.lab.dto;
+package spring.lab.dto.ticket;
 
 import lombok.Builder;
 import lombok.Data;
+import spring.lab.dto.movie.MovieResponseDto;
+import spring.lab.dto.user.UserResponseDto;
 
 @Builder
 @Data
@@ -10,6 +12,7 @@ public class TicketResponseDto {
     String date;
     String startTime;
     int seat;
-    String movieTitle;
+    MovieResponseDto movie;
+    UserResponseDto user;
     double price;
 }
