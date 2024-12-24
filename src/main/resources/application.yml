@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: SpringBootLabs
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-lab
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+    api-docs:
+      enabled: true

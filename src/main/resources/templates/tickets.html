@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .ticket-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .ticket {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .ticket-header {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .ticket-details span {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .view {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Movie Tickets</h1>
+</div>
+
+<form class="search-form" th:action="@{/tickets}" method="get">
+    <label for="title">Search by Movie:</label>
+    <input type="text" id="title" name="title" placeholder="Enter movie title">
+    <button type="submit">Search</button>
+</form>
+
+<div id="tickets" class="ticket-container">
+
+    <div class="ticket" th:each="ticket : ${tickets}">
+        <div class="ticket-header" th:text="${ticket.title}">Movie Title</div>
+        <div class="ticket-details">
+
+            <span><strong>Time:</strong> <span th:text="${ticket.time}">Time</span></span>
+            <span><strong>Row:</strong> <span th:text="${ticket.row}">Row</span></span>
+            <span><strong>Seat:</strong> <span th:text="${ticket.seat}">Seat</span></span>
+
+            <div th:if="${ticket.row > 5 && ticket.row < 8}">
+                <span class="view">Best view!</span>
+            </div>
+        </div>
+
+        <div>
+            <span><strong>Discount:</strong>
+                <span th:switch="${ticket.time}">
+                    <span th:case="'10:00'">Morning Discount</span>
+                    <span th:case="'20:00'">Evening Discount</span>
+                    <span th:case="*">No Discount</span>
+                </span>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
