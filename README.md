@@ -1,2 +1,2 @@
 # spring-boot-labs
-## All labs will be placed in their branches
+## All labs are placed in their branches, last lab№6 placed in main
