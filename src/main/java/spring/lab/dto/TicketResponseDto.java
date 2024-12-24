@@ -11,4 +11,5 @@ public class TicketResponseDto {
     String startTime;
     int seat;
     String movieTitle;
+    double price;
 }

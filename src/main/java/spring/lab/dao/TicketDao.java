@@ -1,11 +1,11 @@
-package spring.lab.repository;
+package spring.lab.dao;
 
-import spring.lab.dto.TicketRequestDto;
 import spring.lab.domain.Ticket;
+import spring.lab.dto.TicketRequestDto;
 
 import java.util.List;
 
-public interface TicketRepository {
+public interface TicketDao {
     Ticket save(TicketRequestDto ticketRequestDto);
 
     Ticket update(Long id, TicketRequestDto ticketRequestDto);

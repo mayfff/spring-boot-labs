@@ -1,7 +1,9 @@
 package spring.lab.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import spring.lab.dto.TicketRequestDto;
 import spring.lab.dto.TicketResponseDto;
@@ -13,17 +15,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/tickets")
 @AllArgsConstructor
+@Validated
 public class TicketController {
     private final TicketService ticketService;
     private final TicketMapper ticketMapper;
 
     @PostMapping
-    public ResponseEntity<TicketResponseDto> createTicket(@RequestBody TicketRequestDto ticketRequestDto) {
+    public ResponseEntity<TicketResponseDto> createTicket(@RequestBody @Valid TicketRequestDto ticketRequestDto) {
         return ResponseEntity.ok(ticketMapper.toTicketResponseDto(ticketService.createTicket(ticketRequestDto)));
     }
 
     @PutMapping("/{ticketId}")
-    public ResponseEntity<TicketResponseDto> updateTicket(@PathVariable Long ticketId, @RequestBody TicketRequestDto ticketRequestDto) {
+    public ResponseEntity<TicketResponseDto> updateTicket(@PathVariable Long ticketId, @RequestBody @Valid TicketRequestDto ticketRequestDto) {
         return ResponseEntity.ok(ticketMapper.toTicketResponseDto(ticketService.updateTicket(ticketId, ticketRequestDto)));
     }
 
